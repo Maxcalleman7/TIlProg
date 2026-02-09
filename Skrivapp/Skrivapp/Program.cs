@@ -2,7 +2,7 @@
 {
     public static void Main()
     {
-        string userName = "";
+        string userName = ""; //ska kopplas till en databas senare?
         string message = "";
 
         string morseMessage="";
@@ -15,7 +15,8 @@
         Console.WriteLine("enter message");
          message = Console.ReadLine().ToUpper();
 
-        morseMessage= Translate(message);
+        
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:"+ Translate($"username {userName}") + Translate(morseMessage);
 
         File.WriteAllText(filepath, morseMessage);
     }
@@ -90,8 +91,10 @@
             [' '] = wordspace
         };
 
-        string morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes: ";
+        message = message.ToUpper();
 
+        string morseMessage = "";
+        
 
         for (int i = 0; i < message.Length; i++)
         {
@@ -99,13 +102,16 @@
             if (translator.ContainsKey(c))
             {
                 morseMessage += (translator[c]);
-                if (i < message.Length - 1 && message[i + 1] != ' ')
+                if (i < message.Length-1 && message[i + 1] != ' ')
                 {
                     morseMessage += (letterspace);
                 }
             }
         }
-        morseMessage = morseMessage.Remove(morseMessage.Length - 1);
+        if (morseMessage.Length > 0)
+        {
+            morseMessage = morseMessage.Remove(morseMessage.Length - 1);
+        }
         return morseMessage;
     }
 
