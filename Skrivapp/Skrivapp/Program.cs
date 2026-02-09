@@ -13,10 +13,10 @@
         userName = Console.ReadLine();
 
         Console.WriteLine("enter message");
-         message = Console.ReadLine().ToUpper();
+        message = Console.ReadLine().ToUpper();
 
         
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:"+ Translate($"username {userName}") + Translate(morseMessage);
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:"+ Translate($"username {userName}") + Translate($"message {morseMessage}");
 
         File.WriteAllText(filepath, morseMessage);
     }
