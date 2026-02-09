@@ -28,8 +28,8 @@ body {
     grid-column: 1 / 2;
     background-color: black;
     color: limegreen;
-
     height: 100%;
+    overflow: hidden; 
 }
 
 
