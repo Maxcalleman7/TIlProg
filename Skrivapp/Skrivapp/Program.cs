@@ -16,7 +16,7 @@
         message = Console.ReadLine().ToUpper();
 
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:" + Translate($"username:{userName}") + " " + Translate($"message:{morseMessage}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"username:{userName}") + "," + Translate($"message:{morseMessage}");
 
         File.WriteAllText(filepath, morseMessage);
     }
@@ -95,6 +95,7 @@
             ['X'] = X,
             ['Y'] = Y,
             ['Z'] = Z,
+
             [' '] = wordspace,
 
             [','] = comma,
