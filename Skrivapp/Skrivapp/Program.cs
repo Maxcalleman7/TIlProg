@@ -5,7 +5,7 @@
         string userName = ""; //ska kopplas till en databas senare?
         string message = "";
 
-        string morseMessage="";
+        string morseMessage = "";
 
         string filepath = "Messages\\Message.txt";
 
@@ -15,8 +15,8 @@
         Console.WriteLine("enter message");
         message = Console.ReadLine().ToUpper();
 
-        
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:"+ Translate($"username {userName}") + Translate($"message {morseMessage}");
+
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:" + Translate($"username {userName}") + " " + Translate($"message {morseMessage}");
 
         File.WriteAllText(filepath, morseMessage);
     }
@@ -33,32 +33,39 @@
 
         string wordspace = "2P..,";
 
-        string A = $"{dot}{_}{dash}";
-        string B = $"{dash}{_}{dot}{_}{dot}{_}{dot}";
-        string C = $"{dash}{_}{dot}{_}{dash}{_}{dot}";
-        string D = $"{dash}{_}{dot}{_}{dot}";
-        string E = $"{dot}";
-        string F = $"{dot}{_}{dot}{_}{dash}{_}{dot}";
-        string G = $"{dash}{_}{dash}{_}{dot}";
-        string H = $"{dot}{_}{dot}{_}{dot}{_}{dot}";
-        string I = $"{dot}{_}{dot}";
-        string J = $"{dot}{_}{dash}{_}{dash}{_}{dash}";
-        string K = $"{dash}{_}{dot}{_}{dash}";
-        string L = $"{dot}{_}{dash}{_}{dot}{_}{dot}";
-        string M = $"{dash}{_}{dash}";
-        string N = $"{dash}{_}{dot}";
-        string O = $"{dash}{_}{dash}{_}{dash}";
-        string P = $"{dot}{_}{dash}{_}{dash}{_}{dot}";
-        string Q = $"{dash}{_}{dash}{_}{dot}{_}{dash}";
-        string R = $"{dot}{_}{dash}{_}{dot}";
-        string S = $"{dot}{_}{dot}{_}{dot}";
-        string T = $"{dash}";
-        string U = $"{dot}{_}{dot}{_}{dash}";
-        string V = $"{dot}{_}{dot}{_}{dot}{_}{dash}";
-        string W = $"{dot}{_}{dash}{_}{dash}";
-        string X = $"{dash}{_}{dot}{_}{dot}{_}{dash}";
-        string Y = $"{dash}{_}{dot}{_}{dash}{_}{dash}";
-        string Z = $"{dash}{_}{dash}{_}{dot}{_}{dot}";
+        string A = dot + _ + dash;
+        string B = dash + _ + dot + _ + dot + _ + dot;
+        string C = dash + _ + dot + _ + dash + _ + dot;
+        string D = dash + _ + dot + _ + dot;
+        string E = dot;
+        string F = dot + _ + dot + _ + dash + _ + dot;
+        string G = dash + _ + dash + _ + dot;
+        string H = dot + _ + dot + _ + dot + _ + dot;
+        string I = dot + _ + dot;
+        string J = dot + _ + dash + _ + dash + _ + dash;
+        string K = dash + _ + dot + _ + dash;
+        string L = dot + _ + dash + _ + dot + _ + dot;
+        string M = dash + _ + dash;
+        string N = dash + _ + dot;
+        string O = dash + _ + dash + _ + dash;
+        string P = dot + _ + dash + _ + dash + _ + dot;
+        string Q = dash + _ + dash + _ + dot + _ + dash;
+        string R = dot + _ + dash + _ + dot;
+        string S = dot + _ + dot + _ + dot;
+        string T = dash;
+        string U = dot + _ + dot + _ + dash;
+        string V = dot + _ + dot + _ + dot + _ + dash;
+        string W = dot + _ + dash + _ + dash;
+        string X = dash + _ + dot + _ + dot + _ + dash;
+        string Y = dash + _ + dot + _ + dash + _ + dash;
+        string Z = dash + _ + dash + _ + dot + _ + dot;
+
+        string comma = dash + _ + dash + _ + dot + _ + dot + _ + dash + _ + dash;
+        string questionmark = dot + _ + dot + _ + dash + _ + dash + _ + dot + _ + dot;
+        string colon = dash + _ + dash + _ + dash + _ + dot + _ + dot + _ + dot;
+        string period = dot + _ + dash + _ + dot + _ + dash + _ + dot + _ + dash;
+        
+
 
         Dictionary<char, string> translator = new Dictionary<char, string>
         {
@@ -88,13 +95,19 @@
             ['X'] = X,
             ['Y'] = Y,
             ['Z'] = Z,
-            [' '] = wordspace
+            [' '] = wordspace,
+
+            [','] = comma,
+            ['?']=questionmark,
+            [':']=colon,
+            ['.']=period,
+            
         };
 
         message = message.ToUpper();
 
         string morseMessage = "";
-        
+
 
         for (int i = 0; i < message.Length; i++)
         {
@@ -102,7 +115,7 @@
             if (translator.ContainsKey(c))
             {
                 morseMessage += (translator[c]);
-                if (i < message.Length-1 && message[i + 1] != ' ')
+                if (i < message.Length - 1 && message[i + 1] != ' ')
                 {
                     morseMessage += (letterspace);
                 }
