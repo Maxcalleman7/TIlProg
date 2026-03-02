@@ -2,7 +2,13 @@
 {
     public static void Main()
     {
-        string userName = ""; //ska kopplas till en databas senare?
+        Console.WriteLine("log in\nusername:");
+        string userName = Console.ReadLine();
+
+        Console.WriteLine("Password:");
+        string password =Console.ReadLine();
+
+        
         string message = "";
 
         string morseMessage = "";
