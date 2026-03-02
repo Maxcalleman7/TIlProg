@@ -5,8 +5,12 @@
         Console.WriteLine("log in\nusername:");
         string userName = Console.ReadLine();
 
+        if (userName == "a") { }
+
         Console.WriteLine("Password:");
         string password =Console.ReadLine();
+
+        
 
         
         string message = "";
@@ -15,14 +19,12 @@
 
         string filepath = "Messages\\Message.txt";
 
-        Console.WriteLine("enter your username");
-        userName = Console.ReadLine();
-
         Console.WriteLine("enter message");
         message = Console.ReadLine().ToUpper();
 
+        DateTime messageTime=(DateTime.Now);
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"username:{userName}") + "," + Translate($"message:{morseMessage}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"username:{userName}") + "," + Translate($"message:{morseMessage}") +","+ Translate($"message sent at:{DateTime.Now}");
 
         File.WriteAllText(filepath, morseMessage);
     }
@@ -115,10 +117,11 @@
 
         string morseMessage = "";
 
-
+        
         for (int i = 0; i < message.Length; i++)
         {
             char c = message[i];
+
             if (translator.ContainsKey(c))
             {
                 morseMessage += (translator[c]);
