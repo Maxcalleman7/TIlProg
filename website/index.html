@@ -2,33 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="inlogg-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIL Program</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
 </head>
-
 <body>
- 
-    <div class="card" id="card1">
-        <div class="pill blue"></div>
+
+    <h1>Logga in:</h1>
+
+    <div>
+        <form action="index.html" method="post">
+            <label for="username">Användarnamn:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Lösenord:</label>
+            <input type="password" id="password" name="password">
+            <a href="Home.html"><input type="submit" value="Logga in" id="Login-btn" ></a>
+        </form>
     </div>
 
-    <div class="card" id="card3">
-        <h2>Global chat:</h2>
-        <p id="username" >>> </p>
-        
 
-    </div>
 
-    <input type="text" id="chatInput" placeholder="Skriv ett meddelande(Max 20 tecken och inga specialtecken)">
 
-    <div class="card" id="card4">
-        <div class="pill search"><Search>Sök</Search></div>
-        <div class="pill red"></div>
-        <div class="pill green"></div>
-        <div class="pill blue"></div>
-    </div>
 
-    <script src="java.js"></script>
+ <script src="index.js"></script>
+
+    
 </body>
 </html>

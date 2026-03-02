@@ -1,0 +1,28 @@
+login.addEventListener("click", function() {
+
+usernameIL = username.value.toUpperCase();
+  
+message = message.value;
+
+const charsChecker = (data) => {
+const okChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,?. ";
+let text = username + ": " + message;
+let valid = true;
+
+for (let i = 0; i < text.length; i++) {
+  if (!okChars.includes(text[i])) {
+    valid = false;
+    break;
+  }
+}
+
+if (!valid) {
+  alert("Meddelandet innehåller ogiltiga tecken.");
+}
+
+for (let i = 0; i < text.length; i++) {
+  if (text[i] === "username:" || text[i] === "message:") {
+    text[i] = ""; 
+  }
+}
+}
