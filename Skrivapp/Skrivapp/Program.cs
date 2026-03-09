@@ -24,7 +24,7 @@
 
         DateTime messageTime=(DateTime.Now);
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 120 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"username:{userName}") + "," + Translate($"message:{morseMessage}") +","+ Translate($"message sent at:{DateTime.Now}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"username:{userName}" ) + Translate($"message:{morseMessage} ") + Translate($"message sent at:{DateTime.Now}");
 
         File.WriteAllText(filepath, morseMessage);
     }
@@ -68,6 +68,17 @@
         string Y = dash + _ + dot + _ + dash + _ + dash;
         string Z = dash + _ + dash + _ + dot + _ + dot;
 
+        string one = dot + _ + dash + _ + dash + _ + dash + _ + dash;
+        string two = dot + _ + dot + _ + dash + _ + dash + _ + dash;
+        string three = dot + _ + dot + _ + dot + _ + dash + _ + dash;
+        string four= dot + _ + dot + _ + dot + _ + dot + _ + dash;
+        string five = dot + _ + dot + _ + dot + _ + dot + _ + dot;
+        string six = dash + _ + dot + _ + dot + _ + dot + _ + dot;
+        string seven = dash + _ + dash + _ + dot + _ + dot + _ + dot;
+        string eight = dash + _ + dash + _ + dash + _ + dot + _ + dot;
+        string nine = dash + _ + dash + _ + dash + _ + dash + _ + dot;
+        string zero = dash + _ + dash + _ + dash + _ + dash + _ + dash;
+
         string comma = dash + _ + dash + _ + dot + _ + dot + _ + dash + _ + dash;
         string questionmark = dot + _ + dot + _ + dash + _ + dash + _ + dot + _ + dot;
         string colon = dash + _ + dash + _ + dash + _ + dot + _ + dot + _ + dot;
@@ -103,6 +114,8 @@
             ['X'] = X,
             ['Y'] = Y,
             ['Z'] = Z,
+
+            
 
             [' '] = wordspace,
 
