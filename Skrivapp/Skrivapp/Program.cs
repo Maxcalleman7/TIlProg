@@ -3,9 +3,9 @@
     public static void Main()
     {
         Console.WriteLine("log in\nusername:");
-        string userName = Console.ReadLine();
+        string userName = Console.ReadLine().ToUpper();
 
-        if (userName == "a") { }
+        
 
         Console.WriteLine("Password:");
         string password =Console.ReadLine();
@@ -24,7 +24,7 @@
 
         DateTime messageTime=(DateTime.Now);
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"username:{userName}" ) + Translate($"message:{morseMessage} ") + Translate($"message sent at:{DateTime.Now}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName}" ) + Translate($"MESSAGE:{morseMessage} ") + Translate($"MESSAGE SENT AT:{DateTime.Now}");
 
         File.WriteAllText(filepath, morseMessage);
     }
