@@ -22,9 +22,9 @@
         Console.WriteLine("enter message");
         message = Console.ReadLine().ToUpper();
 
-        DateTime messageTime=(DateTime.Now);
+        //string messageTime=($"{DateTime.Now.Hour}:{DateTime.Now.Minute}");
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName}") +","+ Translate($"MESSAGE:{morseMessage}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName} ") +","+ Translate($"MESSAGE:{message}");
 
         File.WriteAllText(filepath, morseMessage);
     }
