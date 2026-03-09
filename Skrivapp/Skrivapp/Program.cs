@@ -24,7 +24,7 @@
 
         DateTime messageTime=(DateTime.Now);
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName}" ) + Translate($"MESSAGE:{morseMessage} ") + Translate($"MESSAGE SENT AT:{DateTime.Now}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName}") +","+ Translate($"MESSAGE:{morseMessage}");
 
         File.WriteAllText(filepath, morseMessage);
     }
