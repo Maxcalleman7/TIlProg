@@ -19,24 +19,3 @@ chatInput.addEventListener("keypress", function(event) {
     username.textContent = ">> : ";
 }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
