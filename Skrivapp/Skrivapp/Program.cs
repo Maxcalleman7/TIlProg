@@ -24,7 +24,7 @@
 
         //string messageTime=($"{DateTime.Now.Hour}:{DateTime.Now.Minute}");
 
-        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName} ") +","+ Translate($"MESSAGE:{message}");
+        morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"USERNAME:{userName} ") +","+ Translate($"MESSAGE:{message} = ");
 
         File.WriteAllText(filepath, morseMessage);
     }
@@ -83,6 +83,7 @@
         string questionmark = dot + _ + dot + _ + dash + _ + dash + _ + dot + _ + dot;
         string colon = dash + _ + dash + _ + dash + _ + dot + _ + dot + _ + dot;
         string period = dot + _ + dash + _ + dot + _ + dash + _ + dot + _ + dash;
+        string equalsSign = dash + _ + dot + _ + dot + _ + dot + _ + dash; //message seperator
         
 
 
@@ -135,6 +136,7 @@
             ['?']=questionmark,
             [':']=colon,
             ['.']=period,
+            ['=']=equalsSign
             
         };
 
