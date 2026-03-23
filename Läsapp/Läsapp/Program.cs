@@ -24,12 +24,36 @@ static class Program
             date += $"{dateTime.Day}";
         }
 
-        string logFilePath = $"\"C:\\Users\\cjj\\fldigi.files\\fldigi{date}.log\"";
+        bool readingMsg= false;
+
+        string msgs="";
+
+        string logFilePath = $"C:\\Users\\cjj\\fldigi.files\\fldigi20260316.log";
 
         string writeFilePath = "MessageLog.txt";
 
         List<string> messages = new List<string>();
 
+        using (StreamReader sr = new StreamReader(logFilePath))
+        {
+            while (sr.Peek() >= 0)
+            {
+                char c = (char)sr.Read();
+                if (c == '=' && readingMsg == false) //när meddelandet i logen börjar, börja spara meddelandet
+                {
+                    readingMsg = true;
+                }
+                else if(c=='=') //när meddelandet avslutar, sluta spara men spara avgränsaren
+                {
+                    readingMsg = false;
+                    msgs += c;
+                }
+                if (readingMsg == true)
+                {
+                    msgs += c;
+                }
+            }
+        }
 
     }
 
