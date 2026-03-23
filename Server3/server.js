@@ -1,3 +1,4 @@
+const db = require('./DB'); // Importera databasen (för framtida användning)
 require('dotenv').config(); // Detta läser in .env-filen
 const express = require('express');
 const session = require('express-session');
