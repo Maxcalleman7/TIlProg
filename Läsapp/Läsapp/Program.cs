@@ -26,7 +26,9 @@ static class Program
 
         bool readingMsg= false;
 
-        string msgs="";
+        string msg="";
+
+        List<string> list = new List<string>();
 
         string logFilePath = $"C:\\Users\\cjj\\fldigi.files\\fldigi20260316.log";
 
@@ -46,15 +48,30 @@ static class Program
                 else if(c=='=') //när meddelandet avslutar, sluta spara men spara avgränsaren
                 {
                     readingMsg = false;
-                    msgs += c;
+                    msg += c;
+                    messages.Add(msg);
+                    msg = "";
                 }
-                if (readingMsg == true)
+
+                if (readingMsg == true) //när ett meddelande finns läses dess chars
                 {
-                    msgs += c;
+                    msg += c;
                 }
             }
+        }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras
+
+        using (StreamWriter sw = new StreamWriter(writeFilePath, true))
+        {
+            for(int i = 0; i < messages.Count; i++)
+            {
+                sw.WriteLine(messages[i]); //varje meddelande är 1 Line
+            }
+            
+            
         }
 
-    }
+
+
+     }
 
 }
