@@ -60,11 +60,12 @@ static class Program
             while (sr.Peek() >= 0)
             {
                 char c = (char)sr.Read();
-                if (c == '=' && readingMsg == false) //när meddelandet i logen börjar, börja spara meddelandet
+                if (c == '>' && readingMsg == false) //när meddelandet i logen börjar, börja spara meddelandet
                 {
                     readingMsg = true;
+                    msg += c;
                 }
-                else if (c == '=') //när meddelandet avslutar, sluta spara men spara avgränsaren
+                else if (c == '<') //när meddelandet avslutar, sluta spara men spara avgränsaren
                 {
                     readingMsg = false;
                     msg += c;
