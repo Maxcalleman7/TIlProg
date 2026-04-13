@@ -63,7 +63,7 @@ static class Program
                 if (c == '>' && readingMsg == false) //när meddelandet i logen börjar, börja spara meddelandet
                 {
                     readingMsg = true;
-                    msg += c;
+                    
                 }
                 else if (c == '<') //när meddelandet avslutar, sluta spara men spara avgränsaren
                 {
