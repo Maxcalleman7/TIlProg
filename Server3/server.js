@@ -32,19 +32,64 @@ const checkAuth = (req, res, next) => {
 app.use('/private', checkAuth, express.static(path.join(__dirname, 'private')));
 
 // 4. Inloggnings-post
+// 4. Inloggnings-post
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    if (username === 'admin' && password === '1234') {
-        req.session.loggedIn = true;
-        res.json({ success: true });
-    } else {
-        res.status(401).json({ success: false, message: 'Fel uppgifter' });
-    }
+
+    // Fråga databasen om användarnamn och lösenord matchar
+    const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+    
+    db.get(query, [username, password], (err, row) => {
+        if (err) {
+            console.error('Databasfel vid inloggning:', err.message);
+            return res.status(500).json({ success: false, message: 'Internt serverfel' });
+        }
+
+        if (row) {
+            // Användaren hittades i databasen! (Lösenord och namn matchar)
+            req.session.loggedIn = true;
+            req.session.username = username;
+            res.json({ success: true });
+        } else {
+            // Hittades inte i databasen (fel lösenord eller fel användarnamn)
+            res.status(401).json({ success: false, message: 'Fel uppgifter' });
+        }
+    });
 });
+
+// 5. Route för att skapa ett nytt konto
+app.post('/register', (req, res) => {
+    const { username, password } = req.body;
+
+    // SQL-kommando för att stoppa in en ny rad i tabellen 'users'
+    const insertQuery = 'INSERT INTO users (username, password) VALUES (?, ?)';
+
+    db.run(insertQuery, [username, password], function(err) {
+        if (err) {
+            // Kommer du ihåg "UNIQUE" i DB.js? Här har vi nytta av det!
+            // Om SQLite klagar på "UNIQUE constraint failed", betyder det att namnet är upptaget.
+            if (err.message.includes('UNIQUE')) {
+                return res.status(400).json({ success: false, message: 'Användarnamnet är redan upptaget.' });
+            }
+            // Om det är något annat fel
+            console.error('Databasfel:', err.message);
+            return res.status(500).json({ success: false, message: 'Ett internt serverfel uppstod.' });
+        }
+
+        // Om koden når hit gick det jättebra att spara användaren!
+        res.status(201).json({ success: true, message: 'Konto skapat framgångsrikt!' });
+    });
+});
+
 
 // 5. Route till dashboard
 app.get('/dashboard', checkAuth, (req, res) => {
     res.sendFile(path.join(__dirname, 'private', 'Home.html'));
+});
+
+// API för att hämta användarinfo
+app.get('/api/user', checkAuth, (req, res) => {
+    res.json({ username: req.session.username });
 });
 
 // 6. Logga ut

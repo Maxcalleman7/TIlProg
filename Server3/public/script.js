@@ -1,4 +1,9 @@
 const loginForm = document.getElementById('loginForm');
+const registerBtn = document.getElementById('registerBtn');
+
+registerBtn.addEventListener('click', () => {
+    window.location.href = '/register.html'; // Skickas till registreringssidan
+});
 
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -17,4 +22,7 @@ loginForm.addEventListener('submit', async (e) => {
     } else {
         alert('Fel användarnamn eller lösenord!');
     }
+
+
+
 });
