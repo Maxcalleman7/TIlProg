@@ -2,11 +2,11 @@ const namn = "java";
 console.log("Welcome to " + namn + " programming!");
 
 let message = document.getElementById("message");
-let username = document.getElementById("username");
-let usernameIL = document.getElementById("username-Inlg");
-let userDisplay = document.getElementById("userDisplay");
+let chat = document.getElementById("chat"); 
+let usernameIL = document.getElementById("username-Inlg"); 
+let userDisplay = document.getElementById("userDisplay"); 
 
-let chatInput = document.getElementById("chatInput");
+let chatInput = document.getElementById("chatInput"); //Vi ska senare använda texten från chatloggen senare. 
 
 // Hämta användarnamn när sidan laddas
 fetch('/api/user')
@@ -22,12 +22,9 @@ fetch('/api/user')
 
 chatInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
-        username.textContent =  ">>: " + chatInput.value ;
+        chat.textContent +=   ">>: " + chatInput.value; 
         chatInput.value = "";
-    }
+    } 
 
-    if (username.textContent.length > 20) {
-    alert("Name får inte vara längre än 20 tecken.");
-    username.textContent = ">>: ";
-}
 });
+
