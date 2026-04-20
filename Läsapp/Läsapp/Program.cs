@@ -30,13 +30,32 @@ static class Program
 
         List<string> list = new List<string>();
 
-        string logFilePath = $"C:\\Users\\cjj\\fldigi.files\\fldigi20260316.log";
+        //string logFilePath = $"C:\\Users\\cjj\\fldigi.files\\fldigi20260316.log";
+        string logFilePath = $"../../../fldigi.files/fldigi{date}.log";
+
+        using (var inputFile = new FileStream(
+            logFilePath,
+            FileMode.Open,
+            FileAccess.Read,
+            FileShare.ReadWrite))
+        {
+            using (var outputFile = new FileStream("fldigiLogCopy.txt", FileMode.Create))
+            {
+                var buffer = new byte[0x10000];
+                int bytes;
+
+                while ((bytes = inputFile.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    outputFile.Write(buffer, 0, bytes);
+                }
+            }
+        }
 
         string writeFilePath = "MessageLog.txt";
 
         List<string> messages = new List<string>();
 
-        using (StreamReader sr = new StreamReader(logFilePath))
+        using (StreamReader sr = new StreamReader("fldigiLogCopy.txt"))
         {
             while (sr.Peek() >= 0)
             {
@@ -44,9 +63,9 @@ static class Program
                 if (c == '>' && readingMsg == false) //när meddelandet i logen börjar, börja spara meddelandet
                 {
                     readingMsg = true;
-                    msg += c;
+                    
                 }
-                else if(c=='<') //när meddelandet avslutar, sluta spara
+                else if (c == '<') //när meddelandet avslutar, sluta spara men spara avgränsaren
                 {
                     readingMsg = false;
                     msg += c;
@@ -59,20 +78,18 @@ static class Program
                     msg += c;
                 }
             }
-        }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras
+        }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras-fixas när den är kopllad med webbsidan
 
         using (StreamWriter sw = new StreamWriter(writeFilePath, true))
         {
-            for(int i = 0; i < messages.Count; i++)
+            for (int i = 0; i < messages.Count; i++)
             {
                 sw.WriteLine(messages[i]); //varje meddelande är 1 Line
             }
-            
-            
         }
 
 
 
-     }
+    }
 
 }
