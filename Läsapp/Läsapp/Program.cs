@@ -78,7 +78,7 @@ static class Program
                     msg += c;
                 }
             }
-        }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras
+        }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras-fixas när den är kopllad med webbsidan
 
         using (StreamWriter sw = new StreamWriter(writeFilePath, true))
         {
