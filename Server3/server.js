@@ -5,6 +5,10 @@ const session = require('express-session');
 const path = require('path');
 const app = express();
 
+const fs= require ('fs');
+const filepath='';
+
+
 // 1. Inställningar
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -49,6 +53,10 @@ app.post('/login', (req, res) => {
             // Användaren hittades i databasen! (Lösenord och namn matchar)
             req.session.loggedIn = true;
             req.session.username = username;
+            filepath='/'+username+'txt'
+
+            const userMsgs = fs.readFileSync(filepath, 'utf-8');
+            req.session.userMsgs=userMsgs;
             res.json({ success: true });
         } else {
             // Hittades inte i databasen (fel lösenord eller fel användarnamn)
@@ -56,6 +64,8 @@ app.post('/login', (req, res) => {
         }
     });
 });
+
+
 
 // 5. Route för att skapa ett nytt konto
 app.post('/register', (req, res) => {
@@ -90,6 +100,11 @@ app.get('/dashboard', checkAuth, (req, res) => {
 // API för att hämta användarinfo
 app.get('/api/user', checkAuth, (req, res) => {
     res.json({ username: req.session.username });
+});
+
+//hämtar användares meddelanden
+app.get('/api/userMsgs',checkAuth, (req, res) =>{
+    res.json({userMsgs: req.session.userMsgs});
 });
 
 // 6. Logga ut

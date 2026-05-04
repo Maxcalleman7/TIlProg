@@ -1,8 +1,7 @@
 const namn = "java"; 
 console.log("Welcome to " + namn + " programming!");
-const fs= require ('fs');
-const filepath='Msgs.txt';
-const content = fs.readFileSync(filepath, 'utf-8');
+
+const response= await fetch("Server3/server.js")
 
 let message = document.getElementById("message");
 let chat = document.getElementById("chat"); 
@@ -22,9 +21,9 @@ fetch('/api/user')
             userDisplay.textContent = "Användare: " + data.username;
         }
     })
-    .catch(error => console.error('Fel vid hämtning av användare:', error));
+.catch(error => console.error('Fel vid hämtning av användare:', error));
 
-
+fetch('/api/userMsgs')
 
 chatInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
