@@ -16,6 +16,15 @@ db.serialize(() => {
         username TEXT UNIQUE,
         password TEXT
     )`);
+
+
+    db.run(`CREATE TABLE IF NOT EXISTS posts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        content TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+    )`);
     
     // Lägg till en testanvändare (admin / 1234)
     db.run('INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)', ['admin', '1234']);

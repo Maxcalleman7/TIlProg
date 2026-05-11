@@ -55,6 +55,7 @@ app.post('/login', (req, res) => {
             res.status(401).json({ success: false, message: 'Fel uppgifter' });
         }
     });
+
 });
 
 // 5. Route för att skapa ett nytt konto
@@ -101,3 +102,5 @@ app.get('/logout', (req, res) => {
 // Man kan även använda PORT från .env
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server körs på port ${PORT}`));
+
+
