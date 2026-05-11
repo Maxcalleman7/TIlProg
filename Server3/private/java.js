@@ -29,8 +29,12 @@ chatInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         chat.textContent +=   ">>: " + chatInput.value; 
         chatInput.value = "";
-        
-    } 
 
+        const li = document.createElement("li")
+        li.textContent = chatInput.value
+        itemList.appendChild(li)
+            chatInput.value = "";
+            msg.textContent = "";
+            counter.textContent = `Antal objekt: ${itemList.children.length}`;
+    }
 });
-
