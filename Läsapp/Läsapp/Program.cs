@@ -1,7 +1,47 @@
 ﻿using System.IO;
+using System.Linq.Expressions;
+using System.Data.SQLite;
 
 static class Program
 {
+    class SQLiteHandler
+    {
+        readonly string? _database_name;
+        string _connection_string;
+        SQLiteConnection _connection; //kräver using System.Data.SQLite;
+        SQLiteCommand _command;
+        private void Open()
+        {
+            if (_connection != null)
+            {
+                _connection.Open();
+            }
+        }
+
+
+        private void Close()
+        {
+            if (_connection != null)
+            {
+                _connection.Close();
+            }
+        }
+
+        public SQLiteHandler(string databaseName)
+        {
+            _database_name = databaseName;
+            _connection_string = "URI=file:" + databaseName;
+            _connection = new SQLiteConnection(_connection_string);
+            _command = new SQLiteCommand(_connection);
+        }
+
+        public void AddMessage(string user, string msg)
+        {
+            Open();
+            string sqlcommand = $"INSERT INTO msgs()";
+        }
+
+    }
     public static void Main()
     {
         DateTime dateTime = DateTime.Now;
@@ -24,9 +64,9 @@ static class Program
             date += $"{dateTime.Day}";
         }
 
-        bool readingMsg= false;
+        bool readingMsg = false;
 
-        string msg="";
+        string msg = "";
 
         List<string> list = new List<string>();
 
@@ -63,7 +103,7 @@ static class Program
                 if (c == '>' && readingMsg == false) //när meddelandet i logen börjar, börja spara meddelandet
                 {
                     readingMsg = true;
-                    
+
                 }
                 else if (c == '<') //när meddelandet avslutar, sluta spara men spara avgränsaren
                 {
@@ -79,7 +119,7 @@ static class Program
                 }
             }
         }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras
-
+        
         using (StreamWriter sw = new StreamWriter(writeFilePath, true))
         {
             for (int i = 0; i < messages.Count; i++)
@@ -90,6 +130,41 @@ static class Program
 
 
 
-    }
 
+        List<string> msgTexts = new List<string>();
+        List<string> msgUsers = new List<string>();
+
+        
+        string user = "";
+        string msgText = "";
+
+        using (StreamReader sr = new StreamReader("MessageLog.txt"))
+        {
+            while (sr.Peek() >= 0)
+            {
+                char c = (char)sr.Read();
+                if (c == ':' && readingMsg == false) 
+                {
+                    readingMsg = true;
+
+                }
+                else if (c == ' ') 
+                {
+                    readingMsg = false;
+                    user += c;
+                    msgUsers.Add(user);
+                    user = "";
+                }
+
+                if (readingMsg == true) 
+                {
+                    user += c;
+                }
+            }
+               
+        }
+
+
+    }
+    
 }
