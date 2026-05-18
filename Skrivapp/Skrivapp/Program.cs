@@ -24,11 +24,13 @@
 
         //string messageTime=($"{DateTime.Now.Hour}:{DateTime.Now.Minute}");
 
+        
         morseMessage = "Filetype: Flipper Music Format\r\nVersion: 0 \r\nBPM: 480 \r\nDuration: 8\r\nOctave: 4\r\nNotes:2P..," + Translate($"SMS = USERNAME:{userName} ") +","+ Translate($"MESSAGE:{message} = ");
 
         File.WriteAllText(filepath, morseMessage);
     }
 
+    //bokstäver och tecken görs om till en sträng som flipper zero kan skicka som morsekod
     static string Translate(string message)
     {
         string _ = "8P,"; //signalspace
@@ -83,7 +85,8 @@
         string questionmark = dot + _ + dot + _ + dash + _ + dash + _ + dot + _ + dot;
         string colon = dash + _ + dash + _ + dash + _ + dot + _ + dot + _ + dot;
         string period = dot + _ + dash + _ + dot + _ + dash + _ + dot + _ + dash;
-        string equalsSign = dash + _ + dot + _ + dot + _ + dot + _ + dash; //message seperator?
+
+        string equalsSign = dash + _ + dot + _ + dot + _ + dot + _ + dash; //message seperator
         
         
 
@@ -147,14 +150,14 @@
         string morseMessage = "";
 
         
-        for (int i = 0; i < message.Length; i++)
+        for (int i = 0; i < message.Length; i++)//meddelandet görs om till morsekod
         {
             char c = message[i];
 
             if (translator.ContainsKey(c))
             {
                 morseMessage += (translator[c]);
-                if (i < message.Length - 1 && message[i + 1] != ' ')
+                if (i < message.Length - 1 && message[i + 1] != ' ')//om meddelandet fortsätter och nästa char inte är mellanrum, lägg till ett letterspace för nästa bokstav.
                 {
                     morseMessage += (letterspace);
                 }
