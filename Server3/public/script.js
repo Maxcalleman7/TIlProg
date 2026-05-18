@@ -4,7 +4,7 @@ const registerBtn = document.getElementById('registerBtn');
 registerBtn.addEventListener('click', () => {
     window.location.href = '/register.html'; // Skickas till registreringssidan
 });
-
+// När inloggningsformuläret skickas
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -16,7 +16,7 @@ loginForm.addEventListener('submit', async (e) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     });
-
+    // Felmeddelande om man skriver in fel användarnamn eller lösen, 
     if (response.ok) {
         window.location.href = '/dashboard'; // Skickas till den skyddade sidan
     } else {

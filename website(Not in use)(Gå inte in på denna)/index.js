@@ -1,3 +1,4 @@
+/*
 let username = document.getElementById("username");
 localStorage.setItem("username" , "smith")
 
@@ -18,3 +19,4 @@ else{
 
 });
 }
+*/

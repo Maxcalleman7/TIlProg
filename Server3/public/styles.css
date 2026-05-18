@@ -40,7 +40,7 @@ button:hover {
     background-color: #45a049;
 }
 
-#error-msg {
+#reg-error-msg {
     color: #ff3333;
     font-size: 0.9rem;
     margin-top: 10px;

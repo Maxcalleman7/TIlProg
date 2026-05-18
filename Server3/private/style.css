@@ -9,7 +9,6 @@ body {
 }
 
 
-/* Card base */
 .card {
     background: #e6e6e6;
     border-radius: 14px;
@@ -18,7 +17,6 @@ body {
 }
 
 
-/* Layout positioning */
 #card1 {
     grid-column: 1 / 2;
     height: 220px;
@@ -52,10 +50,7 @@ body {
 }
 
 
-
 .pill.search  { background: #34495e; color: #fff; }
-
-
 
 .pill.green { background: #2ecc71; }
 .pill.red   { background: #c0392b; }
