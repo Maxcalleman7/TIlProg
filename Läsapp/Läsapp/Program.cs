@@ -8,7 +8,7 @@ static class Program
     {
         readonly string? _database_name;
         string _connection_string;
-        SQLiteConnection _connection; //kräver using System.Data.SQLite;
+        SQLiteConnection _connection; 
         SQLiteCommand _command;
         private void Open()
         {
@@ -46,7 +46,7 @@ static class Program
     {
         DateTime dateTime = DateTime.Now;
 
-        string date = $"{dateTime.Year}";
+        string date = $"{dateTime.Year}";//fldigi separerar loggar med datum, så den behöver dagens datum för att hitta loggen från samma dag
         if (dateTime.Month < 10)
         {
             date += $"0{dateTime.Month}";
@@ -73,6 +73,8 @@ static class Program
         //string logFilePath = $"C:\\Users\\cjj\\fldigi.files\\fldigi20260316.log";
         string logFilePath = $"../../../fldigi.files/fldigi{date}.log";
 
+
+        //skapar en kopia av fldigi-logen för att kunna läsa texten i den
         using (var inputFile = new FileStream(
             logFilePath,
             FileMode.Open,
@@ -90,6 +92,8 @@ static class Program
                 }
             }
         }
+
+
 
         string writeFilePath = "MessageLog.txt";
 
@@ -118,13 +122,13 @@ static class Program
                     msg += c;
                 }
             }
-        }//TODO göra så att filen som läses rensas så meddelanden inte dupliceras
+        }
         
         using (StreamWriter sw = new StreamWriter(writeFilePath, true))
         {
             for (int i = 0; i < messages.Count; i++)
             {
-                sw.WriteLine(messages[i]); //varje meddelande är 1 Line
+                sw.WriteLine(messages[i]); //varje meddelande är 1 Line, sparas som text
             }
         }
 
@@ -138,7 +142,7 @@ static class Program
         string user = "";
         string msgText = "";
 
-        using (StreamReader sr = new StreamReader("MessageLog.txt"))
+        using (StreamReader sr = new StreamReader("MessageLog.txt")) //de sparade meddelandena sparas i en sqlite fil med meddelandet och den tänkta mottagaren.
         {
             while (sr.Peek() >= 0)
             {
